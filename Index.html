@@ -1,1 +1,696 @@
-# NZT
+```html
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Zealand Itinerary - Group 6</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        glacier: { 300: '#7dd3fc', 400: '#38bdf8', 500: '#0ea5e9', 900: '#0c4a6e' },
+                        volcano: { 400: '#fb923c', 500: '#f97316', 600: '#ea580c' },
+                        slate: { 850: '#151e2e', 900: '#0f172a' }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Hide scrollbar for horizontal scrolling but keep functionality */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        body { font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-900 text-slate-200 min-h-screen">
+
+    <!-- Header -->
+    <header class="bg-slate-850 border-b border-glacier-900/50 sticky top-0 z-40">
+        <div class="px-4 py-4 max-w-2xl mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-glacier-400 to-volcano-400">
+                    紐西蘭冰與火之旅
+                </h1>
+                <p class="text-xs text-slate-400">Group 6 | Feb 17 - Feb 26</p>
+            </div>
+            <i class="fa-solid fa-mountain text-glacier-400 text-2xl"></i>
+        </div>
+        
+        <!-- Main Tabs -->
+        <div class="flex overflow-x-auto no-scrollbar border-t border-slate-800 text-sm max-w-2xl mx-auto">
+            <button onclick="switchMainTab('itinerary')" id="tab-itinerary" class="main-tab flex-1 py-3 text-center text-glacier-400 border-b-2 border-glacier-400 font-bold whitespace-nowrap px-4"><i class="fa-solid fa-route mr-1"></i> 行程表</button>
+            <button onclick="switchMainTab('immigration')" id="tab-immigration" class="main-tab flex-1 py-3 text-center text-slate-500 border-b-2 border-transparent whitespace-nowrap px-4"><i class="fa-solid fa-passport mr-1"></i> 通關總表</button>
+            <button onclick="switchMainTab('essentials')" id="tab-essentials" class="main-tab flex-1 py-3 text-center text-slate-500 border-b-2 border-transparent whitespace-nowrap px-4"><i class="fa-solid fa-suitcase mr-1"></i> 實用資訊</button>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-2xl mx-auto pb-20">
+
+        <!-- ==================== VIEW 1: ITINERARY ==================== -->
+        <div id="view-itinerary" class="block">
+            
+            <!-- Day Navigation -->
+            <div class="flex overflow-x-auto no-scrollbar gap-2 px-4 py-3 bg-slate-900 sticky top-[110px] z-30 shadow-md shadow-slate-900/50">
+                <!-- JS will generate these buttons -->
+            </div>
+
+            <!-- Days Content Container -->
+            <div id="days-container">
+                <!-- Day 1 -->
+                <div class="day-content hidden" id="day-1">
+                    <img src="https://images.unsplash.com/photo-1593351415075-3bac9f45c877?auto=format&fit=crop&w=800&q=80" alt="Queenstown" class="w-full h-48 object-cover opacity-80">
+                    <div class="px-6 py-4">
+                        <h2 class="text-2xl font-bold text-white mb-1">Day 1 <span class="text-glacier-400 text-lg ml-2">2/17 (三)</span></h2>
+                        <p class="text-volcano-400 text-sm mb-6"><i class="fa-solid fa-location-dot mr-1"></i> Queenstown (皇后鎮)</p>
+                        
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-plane mr-1"></i> 11:50 PM (-1) ~ 9:40 PM</p>
+                            <h3 class="text-lg font-bold text-white">搭機前往皇后鎮</h3>
+                            <p class="text-slate-300 mt-2">華航飛雪梨轉 Qantas 飛 Queenstown</p>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-2">
+                            <div class="absolute w-4 h-4 rounded-full bg-volcano-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(249,115,22,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-bed mr-1"></i> 住宿 (Accommodation)</p>
+                            <h3 class="text-lg font-bold text-white cursor-pointer hover:text-glacier-300 underline underline-offset-4 decoration-glacier-500/50" onclick="showTaxiCard('高景公寓 (Highview Apartments)', '15/19 Brunswick Street, Queenstown 9300, New Zealand')">
+                                高景公寓 (Highview Apartments) <i class="fa-solid fa-taxi ml-1 text-sm text-volcano-400"></i>
+                            </h3>
+                            <p class="text-slate-400 text-sm mt-2">無特別行程，抵達後休息。</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 2 -->
+                <div class="day-content hidden" id="day-2">
+                    <img src="https://images.unsplash.com/photo-1596706930508-e867db2cc2bb?auto=format&fit=crop&w=800&q=80" alt="Queenstown Luge" class="w-full h-48 object-cover opacity-80">
+                    <div class="px-6 py-4">
+                        <h2 class="text-2xl font-bold text-white mb-1">Day 2 <span class="text-glacier-400 text-lg ml-2">2/18 (四)</span></h2>
+                        <p class="text-volcano-400 text-sm mb-6"><i class="fa-solid fa-location-dot mr-1"></i> Queenstown (皇后鎮)</p>
+                        
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-hamburger mr-1"></i> 美食 (Food)</p>
+                            <h3 class="text-lg font-bold text-white">
+                                <a href="https://maps.google.com/?q=Fergburger+Queenstown" target="_blank" class="hover:text-glacier-300 underline underline-offset-4 decoration-slate-600">Fergburger 漢堡 <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                            </h3>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-ticket mr-1"></i> 景點 (Attraction)</p>
+                            <h3 class="text-lg font-bold text-white">
+                                <a href="https://maps.google.com/?q=Skyline+Queenstown" target="_blank" class="hover:text-glacier-300 underline underline-offset-4 decoration-slate-600">天際纜車 Skyline + 滑板車 Luge <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                            </h3>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-utensils mr-1"></i> 晚餐 (Dinner)</p>
+                            <h3 class="text-lg font-bold text-white">
+                                <a href="https://maps.google.com/?q=Stratosfare+Restaurant+Queenstown" target="_blank" class="hover:text-glacier-300 underline underline-offset-4 decoration-slate-600">Stratosfare 景觀自助餐 <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                            </h3>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-2">
+                            <div class="absolute w-4 h-4 rounded-full bg-volcano-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(249,115,22,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-bed mr-1"></i> 住宿 (Accommodation)</p>
+                            <h3 class="text-lg font-bold text-white cursor-pointer hover:text-glacier-300 underline underline-offset-4 decoration-glacier-500/50" onclick="showTaxiCard('高景公寓 (Highview Apartments)', '15/19 Brunswick Street, Queenstown 9300, New Zealand')">
+                                高景公寓 (Highview Apartments) <i class="fa-solid fa-taxi ml-1 text-sm text-volcano-400"></i>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 3 -->
+                <div class="day-content hidden" id="day-3">
+                    <img src="https://images.unsplash.com/photo-1507699622108-4be3abd695ad?auto=format&fit=crop&w=800&q=80" alt="Christchurch" class="w-full h-48 object-cover opacity-80">
+                    <div class="px-6 py-4">
+                        <h2 class="text-2xl font-bold text-white mb-1">Day 3 <span class="text-glacier-400 text-lg ml-2">2/19 (五)</span></h2>
+                        <p class="text-volcano-400 text-sm mb-6"><i class="fa-solid fa-location-dot mr-1"></i> Queenstown → Christchurch</p>
+                        
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-utensils mr-1"></i> 午餐 (Lunch)</p>
+                            <h3 class="text-lg font-bold text-white">
+                                <a href="https://maps.google.com/?q=Flame+Bar+and+Grill+Queenstown" target="_blank" class="hover:text-glacier-300 underline underline-offset-4 decoration-slate-600">Flame Bar & Grill 火烤豬肋排 <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                            </h3>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-car mr-1"></i> 交通 (Transport)</p>
+                            <h3 class="text-lg font-bold text-white">自駕前往基督城 (530km)</h3>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-wine-glass mr-1"></i> 晚餐/酒吧 (Dinner/Bar)</p>
+                            <h3 class="text-lg font-bold text-white">
+                                <a href="https://maps.google.com/?q=Mr+brightside+rooftop+bar+Christchurch" target="_blank" class="hover:text-glacier-300 underline underline-offset-4 decoration-slate-600">Mr brightside rooftop bar <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                            </h3>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-2">
+                            <div class="absolute w-4 h-4 rounded-full bg-volcano-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(249,115,22,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-bed mr-1"></i> 住宿 (Accommodation)</p>
+                            <h3 class="text-lg font-bold text-white cursor-pointer hover:text-glacier-300 underline underline-offset-4 decoration-glacier-500/50" onclick="showTaxiCard('Hotel Give', '12 Hereford Street, Christchurch Central City, Christchurch 8013, New Zealand')">
+                                Hotel Give <i class="fa-solid fa-taxi ml-1 text-sm text-volcano-400"></i>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 4 -->
+                <div class="day-content hidden" id="day-4">
+                    <img src="https://images.unsplash.com/photo-1627940251786-21f422e83163?auto=format&fit=crop&w=800&q=80" alt="Christchurch Tram" class="w-full h-48 object-cover opacity-80">
+                    <div class="px-6 py-4">
+                        <h2 class="text-2xl font-bold text-white mb-1">Day 4 <span class="text-glacier-400 text-lg ml-2">2/20 (六)</span></h2>
+                        <p class="text-volcano-400 text-sm mb-6"><i class="fa-solid fa-location-dot mr-1"></i> Christchurch (基督城)</p>
+                        
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-map-location-dot mr-1"></i> 市區景點 (City Tour)</p>
+                            <div class="flex flex-col gap-3 mt-2">
+                                <a href="https://maps.google.com/?q=Cardboard+Cathedral+Christchurch" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">紙板教堂 <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓ 復古電車 (一日券)</span>
+                                <a href="https://maps.google.com/?q=Turanga+Christchurch+Library" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">基督城圖書館 <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Chiwahwah+Mexican+Cantina+Bar+Christchurch" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">Chiwahwah Mexican Cantina Bar <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=New+Regent+Street+Christchurch" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">新攝政街 <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Victoria+Square+Christchurch" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">維多利亞廣場 <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=ChristChurch+Cathedral" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">基督城大教堂 <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Canterbury+Museum" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">坎特伯雷博物館 <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Christchurch+Art+Gallery" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">基督城美術館 <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Amazonita+Christchurch" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">Amazonita <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-2">
+                            <div class="absolute w-4 h-4 rounded-full bg-volcano-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(249,115,22,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-bed mr-1"></i> 住宿 (Accommodation)</p>
+                            <h3 class="text-lg font-bold text-white cursor-pointer hover:text-glacier-300 underline underline-offset-4 decoration-glacier-500/50" onclick="showTaxiCard('Hotel Give', '12 Hereford Street, Christchurch Central City, Christchurch 8013, New Zealand')">
+                                Hotel Give <i class="fa-solid fa-taxi ml-1 text-sm text-volcano-400"></i>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 5 -->
+                <div class="day-content hidden" id="day-5">
+                    <img src="https://images.unsplash.com/photo-1596706930508-e867db2cc2bb?auto=format&fit=crop&w=800&q=80" alt="Cook Strait Ferry" class="w-full h-48 object-cover opacity-80">
+                    <div class="px-6 py-4">
+                        <h2 class="text-2xl font-bold text-white mb-1">Day 5 <span class="text-glacier-400 text-lg ml-2">2/21 (日)</span></h2>
+                        <p class="text-volcano-400 text-sm mb-6"><i class="fa-solid fa-location-dot mr-1"></i> Christchurch → Wellington</p>
+                        
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-ship mr-1"></i> 交通 (Transport)</p>
+                            <h3 class="text-lg font-bold text-white">跨海渡輪 (約3小時) + 自駕(380km)</h3>
+                            <p class="text-slate-300 mt-1">穿越庫克海峽抵達威靈頓</p>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-camera mr-1"></i> 景點與美食 (Attraction & Food)</p>
+                            <div class="flex flex-col gap-3 mt-2">
+                                <a href="https://maps.google.com/?q=Wellington+Art+Street" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">藝術街 <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Riverside+Market+Wellington" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">河岸集市 (吃飯) <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Wellington+Botanic+Garden" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">植物園散步 <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=KOJI+Wellington" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">KOJI (晚餐) <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-2">
+                            <div class="absolute w-4 h-4 rounded-full bg-volcano-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(249,115,22,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-bed mr-1"></i> 住宿 (Accommodation)</p>
+                            <h3 class="text-lg font-bold text-white cursor-pointer hover:text-glacier-300 underline underline-offset-4 decoration-glacier-500/50" onclick="showTaxiCard('Quest 256 Lambton', '256 Lambton Quay, Wellington Central, Wellington 6011, New Zealand')">
+                                Quest 256 Lambton <i class="fa-solid fa-taxi ml-1 text-sm text-volcano-400"></i>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 6 -->
+                <div class="day-content hidden" id="day-6">
+                    <img src="https://images.unsplash.com/photo-1589802829985-817e51171b92?auto=format&fit=crop&w=800&q=80" alt="Wellington" class="w-full h-48 object-cover opacity-80">
+                    <div class="px-6 py-4">
+                        <h2 class="text-2xl font-bold text-white mb-1">Day 6 <span class="text-glacier-400 text-lg ml-2">2/22 (一)</span></h2>
+                        <p class="text-volcano-400 text-sm mb-6"><i class="fa-solid fa-location-dot mr-1"></i> Wellington (威靈頓)</p>
+                        
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-camera mr-1"></i> 景點與美食 (Attraction & Food)</p>
+                            <div class="flex flex-col gap-3 mt-2">
+                                <a href="https://maps.google.com/?q=Cuba+Street+Wellington" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">古巴街 Cuba Street <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Museum+of+New+Zealand+Te+Papa+Tongarewa" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">紐西蘭國際博物館 Te Papa <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Wellington+City+Gallery" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">威靈頓美術館 <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Khao+Soi+Welly+Eatery" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">Khao Soi Welly Eatery (午餐) <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-2">
+                            <div class="absolute w-4 h-4 rounded-full bg-volcano-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(249,115,22,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-bed mr-1"></i> 住宿 (Accommodation)</p>
+                            <h3 class="text-lg font-bold text-white cursor-pointer hover:text-glacier-300 underline underline-offset-4 decoration-glacier-500/50" onclick="showTaxiCard('Quest 256 Lambton', '256 Lambton Quay, Wellington Central, Wellington 6011, New Zealand')">
+                                Quest 256 Lambton <i class="fa-solid fa-taxi ml-1 text-sm text-volcano-400"></i>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 7 -->
+                <div class="day-content hidden" id="day-7">
+                    <img src="https://images.unsplash.com/photo-1600704136914-4dafa23d1326?auto=format&fit=crop&w=800&q=80" alt="Taupo" class="w-full h-48 object-cover opacity-80">
+                    <div class="px-6 py-4">
+                        <h2 class="text-2xl font-bold text-white mb-1">Day 7 <span class="text-glacier-400 text-lg ml-2">2/23 (二)</span></h2>
+                        <p class="text-volcano-400 text-sm mb-6"><i class="fa-solid fa-location-dot mr-1"></i> Wellington → Taupō (陶波)</p>
+                        
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-car mr-1"></i> 交通 (Transport)</p>
+                            <h3 class="text-lg font-bold text-white">自駕 (400km)</h3>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-camera mr-1"></i> 景點與美食 (Attraction & Food)</p>
+                            <div class="flex flex-col gap-3 mt-2">
+                                <a href="https://maps.google.com/?q=Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block break-words">最長地名山丘 (Taumatawhakatangi...) <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Brown+Sugar+Cafe" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">Brown Sugar Cafe <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Lake+Taupo+Walkway" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">陶波湖岸步道散步 <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Waterside+Restaurant+Taupo" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">Waterside Restaurant (晚餐) <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-2">
+                            <div class="absolute w-4 h-4 rounded-full bg-volcano-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(249,115,22,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-bed mr-1"></i> 住宿 (Accommodation)</p>
+                            <h3 class="text-lg font-bold text-white cursor-pointer hover:text-glacier-300 underline underline-offset-4 decoration-glacier-500/50" onclick="showTaxiCard('The retreat', 'Taupo, Waikato, New Zealand (請核對Booking確認信)')">
+                                The retreat <i class="fa-solid fa-taxi ml-1 text-sm text-volcano-400"></i>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 8 -->
+                <div class="day-content hidden" id="day-8">
+                    <img src="https://images.unsplash.com/photo-1549487920-d87cb34d2891?auto=format&fit=crop&w=800&q=80" alt="Hobbiton" class="w-full h-48 object-cover opacity-80">
+                    <div class="px-6 py-4">
+                        <h2 class="text-2xl font-bold text-white mb-1">Day 8 <span class="text-glacier-400 text-lg ml-2">2/24 (三)</span></h2>
+                        <p class="text-volcano-400 text-sm mb-6"><i class="fa-solid fa-location-dot mr-1"></i> Taupō → Hamilton</p>
+                        
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-car mr-1"></i> 交通 (Transport)</p>
+                            <h3 class="text-lg font-bold text-white">自駕 (180km)</h3>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-camera mr-1"></i> 早上行程 (Morning)</p>
+                            <h3 class="text-lg font-bold text-white">
+                                <a href="https://maps.google.com/?q=Spa+Thermal+Park+Taupo" target="_blank" class="hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block mb-2">Spa Thermal Park <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <a href="https://maps.google.com/?q=Huka+Falls" target="_blank" class="hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">胡卡瀑布 Huka Falls <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                            </h3>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-utensils mr-1"></i> 午餐 (Lunch)</p>
+                            <h3 class="text-lg font-bold text-white">
+                                <a href="https://maps.google.com/?q=Gothenburg+Restaurant+Hamilton" target="_blank" class="hover:text-glacier-300 underline underline-offset-4 decoration-slate-600">Gothenburg <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                            </h3>
+                        </div>
+                        
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-camera mr-1"></i> 傍晚與晚餐 (Evening & Dinner)</p>
+                            <h3 class="text-lg font-bold text-white">
+                                <a href="https://maps.google.com/?q=Hobbiton+Movie+Set" target="_blank" class="hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block mb-2">哈比村 Hobbiton <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <a href="https://maps.google.com/?q=Stables+on+Alpha" target="_blank" class="hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">Stables on Alpha (晚餐) <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                            </h3>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-2">
+                            <div class="absolute w-4 h-4 rounded-full bg-volcano-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(249,115,22,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-bed mr-1"></i> 住宿 (Accommodation)</p>
+                            <h3 class="text-lg font-bold text-white cursor-pointer hover:text-glacier-300 underline underline-offset-4 decoration-glacier-500/50" onclick="showTaxiCard('JetPark Hamilton Airport', '201 Airport Road, RD 2, Hamilton 3282, New Zealand')">
+                                JetPark Hamilton Airport <i class="fa-solid fa-taxi ml-1 text-sm text-volcano-400"></i>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 9 -->
+                <div class="day-content hidden" id="day-9">
+                    <img src="https://images.unsplash.com/photo-1549429532-a56012871b69?auto=format&fit=crop&w=800&q=80" alt="Auckland" class="w-full h-48 object-cover opacity-80">
+                    <div class="px-6 py-4">
+                        <h2 class="text-2xl font-bold text-white mb-1">Day 9 <span class="text-glacier-400 text-lg ml-2">2/25 (四)</span></h2>
+                        <p class="text-volcano-400 text-sm mb-6"><i class="fa-solid fa-location-dot mr-1"></i> Auckland (奧克蘭)</p>
+                        
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-car mr-1"></i> 交通 (Transport)</p>
+                            <h3 class="text-lg font-bold text-white">自駕 (160km)</h3>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-6">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-camera mr-1"></i> 市區景點 (City Tour)</p>
+                            <div class="flex flex-col gap-3 mt-2">
+                                <a href="https://maps.google.com/?q=Albert+Park+Auckland" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">Albert Park <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Queen+Street+Auckland" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">皇后街 Queen Street (購物) <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Sky+Tower+Auckland" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">天空塔 Sky Tower <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                                <span class="text-slate-400 text-sm">↓</span>
+                                <a href="https://maps.google.com/?q=Devonport+Auckland" target="_blank" class="text-white hover:text-glacier-300 underline underline-offset-4 decoration-slate-600 block">德文港 Devonport <i class="fa-solid fa-up-right-from-square text-xs ml-1"></i></a>
+                            </div>
+                        </div>
+
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-2">
+                            <div class="absolute w-4 h-4 rounded-full bg-volcano-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(249,115,22,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-bed mr-1"></i> 住宿 (Accommodation)</p>
+                            <h3 class="text-lg font-bold text-white cursor-pointer hover:text-glacier-300 underline underline-offset-4 decoration-glacier-500/50" onclick="showTaxiCard('奧克蘭城市飯店 (Auckland City Hotel)', '157 Hobson Street, Auckland CBD, Auckland 1010, New Zealand')">
+                                奧克蘭城市飯店 (Auckland City Hotel) <i class="fa-solid fa-taxi ml-1 text-sm text-volcano-400"></i>
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Day 10 -->
+                <div class="day-content hidden" id="day-10">
+                    <img src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80" alt="Flight" class="w-full h-48 object-cover opacity-80">
+                    <div class="px-6 py-4">
+                        <h2 class="text-2xl font-bold text-white mb-1">Day 10 <span class="text-glacier-400 text-lg ml-2">2/26 (五)</span></h2>
+                        <p class="text-volcano-400 text-sm mb-6"><i class="fa-solid fa-location-dot mr-1"></i> Auckland (奧克蘭)</p>
+                        
+                        <div class="relative border-l-2 border-slate-700 ml-3 pl-6 pb-2">
+                            <div class="absolute w-4 h-4 rounded-full bg-glacier-500 -left-[9px] top-1 shadow-[0_0_8px_rgba(14,165,233,0.6)]"></div>
+                            <p class="text-sm text-slate-400 mb-1"><i class="fa-solid fa-plane-departure mr-1"></i> 返程 (Departure)</p>
+                            <h3 class="text-lg font-bold text-white">8:50 PM ~ 5:50 AM (+1)</h3>
+                            <p class="text-slate-300 mt-2">帶著滿滿回憶，搭機返回溫暖的家！</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ==================== VIEW 2: IMMIGRATION TABLE ==================== -->
+        <div id="view-immigration" class="hidden px-4 py-6">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-xl font-bold text-white"><i class="fa-solid fa-passport text-glacier-400 mr-2"></i> 通關行程總表</h2>
+                <button onclick="toggleLanguage()" class="bg-slate-700 hover:bg-slate-600 text-white px-4 py-2 rounded-lg text-sm border border-slate-600 flex items-center transition-colors">
+                    <span id="lang-btn-text">🔤 切換英文版</span>
+                </button>
+            </div>
+            
+            <div class="bg-slate-800 rounded-xl overflow-hidden border border-slate-700 shadow-xl">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-900 border-b border-slate-700">
+                            <th class="p-3 text-sm font-semibold text-slate-300 lang-el" data-zh="日期" data-en="Date">日期</th>
+                            <th class="p-3 text-sm font-semibold text-slate-300 lang-el" data-zh="地點/行程" data-en="Location/Plan">地點/行程</th>
+                            <th class="p-3 text-sm font-semibold text-slate-300 lang-el" data-zh="住宿" data-en="Accommodation">住宿</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm divide-y divide-slate-700/50">
+                        <!-- Data generated manually for accurate translation -->
+                        <tr class="hover:bg-slate-700/30 transition-colors">
+                            <td class="p-3 whitespace-nowrap text-glacier-300">2/17</td>
+                            <td class="p-3 lang-el" data-zh="抵達皇后鎮" data-en="Arrival at Queenstown">抵達皇后鎮</td>
+                            <td class="p-3 lang-el text-volcano-400" data-zh="高景公寓" data-en="Highview Apartments">高景公寓</td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/30 transition-colors bg-slate-800/50">
+                            <td class="p-3 whitespace-nowrap text-glacier-300">2/18</td>
+                            <td class="p-3 lang-el" data-zh="皇后鎮市區觀光" data-en="Queenstown Sightseeing">皇后鎮市區觀光</td>
+                            <td class="p-3 lang-el text-volcano-400" data-zh="高景公寓" data-en="Highview Apartments">高景公寓</td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/30 transition-colors">
+                            <td class="p-3 whitespace-nowrap text-glacier-300">2/19</td>
+                            <td class="p-3 lang-el" data-zh="駕車前往基督城" data-en="Drive to Christchurch">駕車前往基督城</td>
+                            <td class="p-3 lang-el text-volcano-400" data-zh="Hotel Give" data-en="Hotel Give">Hotel Give</td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/30 transition-colors bg-slate-800/50">
+                            <td class="p-3 whitespace-nowrap text-glacier-300">2/20</td>
+                            <td class="p-3 lang-el" data-zh="基督城市區觀光" data-en="Christchurch Sightseeing">基督城市區觀光</td>
+                            <td class="p-3 lang-el text-volcano-400" data-zh="Hotel Give" data-en="Hotel Give">Hotel Give</td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/30 transition-colors">
+                            <td class="p-3 whitespace-nowrap text-glacier-300">2/21</td>
+                            <td class="p-3 lang-el" data-zh="渡輪前往威靈頓" data-en="Ferry to Wellington">渡輪前往威靈頓</td>
+                            <td class="p-3 lang-el text-volcano-400" data-zh="Quest 256 Lambton" data-en="Quest 256 Lambton">Quest 256 Lambton</td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/30 transition-colors bg-slate-800/50">
+                            <td class="p-3 whitespace-nowrap text-glacier-300">2/22</td>
+                            <td class="p-3 lang-el" data-zh="威靈頓市區觀光" data-en="Wellington Sightseeing">威靈頓市區觀光</td>
+                            <td class="p-3 lang-el text-volcano-400" data-zh="Quest 256 Lambton" data-en="Quest 256 Lambton">Quest 256 Lambton</td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/30 transition-colors">
+                            <td class="p-3 whitespace-nowrap text-glacier-300">2/23</td>
+                            <td class="p-3 lang-el" data-zh="駕車前往陶波" data-en="Drive to Taupō">駕車前往陶波</td>
+                            <td class="p-3 lang-el text-volcano-400" data-zh="The retreat" data-en="The retreat">The retreat</td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/30 transition-colors bg-slate-800/50">
+                            <td class="p-3 whitespace-nowrap text-glacier-300">2/24</td>
+                            <td class="p-3 lang-el" data-zh="哈比村、前往漢米爾頓" data-en="Hobbiton, Drive to Hamilton">哈比村、前往漢米爾頓</td>
+                            <td class="p-3 lang-el text-volcano-400" data-zh="JetPark Hamilton" data-en="JetPark Hamilton Airport">JetPark Hamilton</td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/30 transition-colors">
+                            <td class="p-3 whitespace-nowrap text-glacier-300">2/25</td>
+                            <td class="p-3 lang-el" data-zh="駕車前往奧克蘭觀光" data-en="Drive to Auckland Sightseeing">駕車前往奧克蘭觀光</td>
+                            <td class="p-3 lang-el text-volcano-400" data-zh="奧克蘭城市飯店" data-en="Auckland City Hotel">奧克蘭城市飯店</td>
+                        </tr>
+                        <tr class="hover:bg-slate-700/30 transition-colors bg-slate-800/50">
+                            <td class="p-3 whitespace-nowrap text-glacier-300">2/26</td>
+                            <td class="p-3 lang-el" data-zh="奧克蘭搭機返台" data-en="Flight departure to Taiwan">奧克蘭搭機返台</td>
+                            <td class="p-3 text-slate-500">-</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-xs text-slate-500 mt-4 text-center">※ 海關查驗時，請點擊上方按鈕切換為英文版出示。</p>
+        </div>
+
+        <!-- ==================== VIEW 3: ESSENTIALS ==================== -->
+        <div id="view-essentials" class="hidden px-4 py-6 space-y-8">
+            
+            <!-- Map Placeholder -->
+            <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 shadow-lg">
+                <h2 class="text-lg font-bold text-white mb-3"><i class="fa-solid fa-map-location-dot text-glacier-400 mr-2"></i> 目的地地圖 (Google Map)</h2>
+                <div class="w-full h-64 bg-slate-700 rounded-lg overflow-hidden relative">
+                    <!-- 請在此處替換您自己的 Google Maps iframe 代碼 -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1414457.2662991667!2d174.7573038478426!3d-41.286665500000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6d38b1fc49e974cb%3A0xa00ef63a213b470!2sNew%20Zealand!5e0!3m2!1sen!2stw!4v1680000000000!5m2!1sen!2stw" 
+                            width="100%" height="100%" style="border:0; filter: invert(90%) hue-rotate(180deg);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <p class="text-xs text-slate-500 mt-2">＊後續可於 HTML 內自行替換 iframe 網址</p>
+            </div>
+
+            <!-- Luggage Checklist -->
+            <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 shadow-lg">
+                <h2 class="text-lg font-bold text-white mb-3"><i class="fa-solid fa-list-check text-glacier-400 mr-2"></i> 行李 Checklist</h2>
+                <ul class="space-y-2 text-sm text-slate-300">
+                    <li class="flex items-center gap-2"><input type="checkbox" class="accent-volcano-500 w-4 h-4 rounded"> 護照 (效期6個月以上) & 簽證 (NZeTA)</li>
+                    <li class="flex items-center gap-2"><input type="checkbox" class="accent-volcano-500 w-4 h-4 rounded"> 國際駕照 & 台灣駕照正本</li>
+                    <li class="flex items-center gap-2"><input type="checkbox" class="accent-volcano-500 w-4 h-4 rounded"> 信用卡 (建議備2張) & 少量紐幣現金</li>
+                    <li class="flex items-center gap-2"><input type="checkbox" class="accent-volcano-500 w-4 h-4 rounded"> 保暖衣物 (洋蔥式穿法為主)</li>
+                    <li class="flex items-center gap-2"><input type="checkbox" class="accent-volcano-500 w-4 h-4 rounded"> 萬用轉接頭 (八字型)</li>
+                    <!-- 請自行新增或修改 -->
+                </ul>
+            </div>
+
+            <!-- Souvenirs -->
+            <div class="bg-slate-800 rounded-xl p-4 border border-slate-700 shadow-lg">
+                <h2 class="text-lg font-bold text-white mb-3"><i class="fa-solid fa-gift text-glacier-400 mr-2"></i> 推薦伴手禮清單</h2>
+                <div class="grid grid-cols-2 gap-3 text-sm">
+                    <div class="bg-slate-700/50 p-3 rounded-lg border border-slate-600">
+                        <h3 class="text-volcano-400 font-bold mb-1">麥蘆卡蜂蜜</h3>
+                        <p class="text-slate-400 text-xs">Manuka Honey，必買紐西蘭特產。</p>
+                    </div>
+                    <div class="bg-slate-700/50 p-3 rounded-lg border border-slate-600">
+                        <h3 class="text-volcano-400 font-bold mb-1">綿羊油/護膚品</h3>
+                        <p class="text-slate-400 text-xs">平價好用的保濕聖品。</p>
+                    </div>
+                    <div class="bg-slate-700/50 p-3 rounded-lg border border-slate-600">
+                        <h3 class="text-volcano-400 font-bold mb-1">Whittaker's 巧克力</h3>
+                        <p class="text-slate-400 text-xs">國民品牌，口味超多。</p>
+                    </div>
+                    <div class="bg-slate-700/50 p-3 rounded-lg border border-slate-600">
+                        <h3 class="text-volcano-400 font-bold mb-1">Cookie Time</h3>
+                        <p class="text-slate-400 text-xs">超濃郁經典餅乾，可微波加熱。</p>
+                    </div>
+                     <!-- 請自行新增或修改 -->
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- Modal (Taxi Card) -->
+    <div id="taxi-modal" class="fixed inset-0 bg-black/80 z-50 hidden flex-col justify-center items-center p-4 backdrop-blur-sm transition-opacity opacity-0">
+        <div class="bg-white rounded-2xl w-full max-w-sm overflow-hidden shadow-2xl transform scale-95 transition-transform" id="taxi-modal-content">
+            <div class="bg-volcano-500 p-4 text-center">
+                <i class="fa-solid fa-taxi text-4xl text-white mb-2"></i>
+                <h2 class="text-2xl font-bold text-white">司機您好 / Hello Driver</h2>
+            </div>
+            <div class="p-6 text-center">
+                <p class="text-slate-500 text-sm mb-2">請帶我到以下地址：<br>Please take me to this address:</p>
+                <div class="my-6">
+                    <h3 id="taxi-hotel-name" class="text-xl font-bold text-slate-800 mb-2">飯店名稱</h3>
+                    <p id="taxi-address" class="text-2xl font-black text-slate-900 leading-tight">123 Address Street, City</p>
+                </div>
+                <button onclick="closeTaxiCard()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold py-3 px-4 rounded-xl transition-colors">
+                    關閉 (Close)
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // 1. Day Navigation Generation & Logic
+        const totalDays = 10;
+        let currentDay = 1;
+        
+        function initDaysNav() {
+            const navContainer = document.querySelector('.flex.overflow-x-auto.gap-2');
+            for(let i=1; i<=totalDays; i++) {
+                const btn = document.createElement('button');
+                btn.id = `nav-day-${i}`;
+                btn.className = `min-w-[70px] py-2 rounded-full text-sm font-bold transition-all border ${i === 1 ? 'bg-glacier-500 text-white border-glacier-500 shadow-[0_0_10px_rgba(14,165,233,0.3)]' : 'bg-slate-800 text-slate-400 border-slate-700 hover:border-glacier-500/50'}`;
+                btn.innerText = `Day ${i}`;
+                btn.onclick = () => showDay(i);
+                navContainer.appendChild(btn);
+            }
+            showDay(1); // Default to day 1
+        }
+
+        function showDay(dayIndex) {
+            // Update buttons
+            for(let i=1; i<=totalDays; i++) {
+                const btn = document.getElementById(`nav-day-${i}`);
+                if(btn) {
+                    if(i === dayIndex) {
+                        btn.className = `min-w-[70px] py-2 rounded-full text-sm font-bold transition-all border bg-glacier-500 text-white border-glacier-500 shadow-[0_0_10px_rgba(14,165,233,0.4)]`;
+                    } else {
+                        btn.className = `min-w-[70px] py-2 rounded-full text-sm font-bold transition-all border bg-slate-800 text-slate-400 border-slate-700 hover:border-glacier-500/50`;
+                    }
+                }
+                // Update content visibility
+                const content = document.getElementById(`day-${i}`);
+                if(content) {
+                    content.classList.toggle('hidden', i !== dayIndex);
+                }
+            }
+            currentDay = dayIndex;
+            // Scroll buttons into view nicely
+            const activeBtn = document.getElementById(`nav-day-${dayIndex}`);
+            if(activeBtn) {
+                activeBtn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // 2. Main Tab Switching Logic
+        function switchMainTab(tabName) {
+            const tabs = ['itinerary', 'immigration', 'essentials'];
+            tabs.forEach(t => {
+                // Toggle view
+                document.getElementById(`view-${t}`).classList.toggle('hidden', t !== tabName);
+                document.getElementById(`view-${t}`).classList.toggle('block', t === tabName);
+                
+                // Toggle tab styles
+                const btn = document.getElementById(`tab-${t}`);
+                if(t === tabName) {
+                    btn.classList.add('text-glacier-400', 'border-glacier-400');
+                    btn.classList.remove('text-slate-500', 'border-transparent');
+                } else {
+                    btn.classList.add('text-slate-500', 'border-transparent');
+                    btn.classList.remove('text-glacier-400', 'border-glacier-400');
+                }
+            });
+        }
+
+        // 3. Taxi Card (Modal) Logic
+        const modal = document.getElementById('taxi-modal');
+        const modalContent = document.getElementById('taxi-modal-content');
+        
+        function showTaxiCard(hotelName, address) {
+            document.getElementById('taxi-hotel-name').innerText = hotelName;
+            document.getElementById('taxi-address').innerText = address;
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            // Trigger animation
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }, 10);
+        }
+
+        function closeTaxiCard() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300); // match transition duration
+        }
+
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeTaxiCard();
+            }
+        });
+
+        // 4. Bilingual Toggle Logic (Immigration Table)
+        let currentLang = 'zh'; // default
+        function toggleLanguage() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            
+            const btnText = document.getElementById('lang-btn-text');
+            btnText.innerText = currentLang === 'zh' ? '🔤 切換英文版' : '🔤 Switch to Chinese';
+            
+            const elements = document.querySelectorAll('.lang-el');
+            elements.forEach(el => {
+                el.innerText = el.getAttribute(`data-${currentLang}`);
+            });
+        }
+
+        // Initialize
+        initDaysNav();
+
+    </script>
+</body>
+</html>
+
+```
